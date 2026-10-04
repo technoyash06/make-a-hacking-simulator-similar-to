@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PhantomOps Hacking Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="sim-shell" aria-label="PhantomOps harmless hacking simulator">
+      <section class="topbar" aria-label="Simulator controls">
+        <div class="brand-lockup">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">PhantomOps</p>
+            <h1>Hacking Simulator</h1>
+          </div>
+        </div>
+        <div class="toolbar" role="group" aria-label="Session controls">
+          <button class="icon-button" id="soundToggle" type="button" aria-pressed="false" title="Toggle sound">
+            <span aria-hidden="true">♪</span>
+          </button>
+          <button class="text-button" id="autoRun" type="button">Auto Run</button>
+          <button class="danger-button" id="panic" type="button">Panic Wipe</button>
+        </div>
+      </section>
+
+      <section class="status-strip" aria-label="Status overview">
+        <article>
+          <span>Session</span>
+          <strong id="sessionId">PX-0000</strong>
+        </article>
+        <article>
+          <span>Trace</span>
+          <strong id="tracePercent">0%</strong>
+        </article>
+        <article>
+          <span>Access</span>
+          <strong id="accessState">Sandbox</strong>
+        </article>
+        <article>
+          <span>Nodes</span>
+          <strong id="nodeCount">00</strong>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <aside class="panel side-panel" aria-label="Mission presets">
+          <div class="panel-head">
+            <h2>Presets</h2>
+            <span class="pulse-dot" aria-hidden="true"></span>
+          </div>
+          <div class="preset-list">
+            <button class="preset active" type="button" data-preset="mainframe">
+              <span>Mainframe Sweep</span>
+              <small>fast scan sequence</small>
+            </button>
+            <button class="preset" type="button" data-preset="satellite">
+              <span>Satellite Relay</span>
+              <small>orbital route drama</small>
+            </button>
+            <button class="preset" type="button" data-preset="vault">
+              <span>Vault Bypass</span>
+              <small>cipher theatre</small>
+            </button>
+            <button class="preset" type="button" data-preset="ghost">
+              <span>Ghost Trace</span>
+              <small>counter-trace race</small>
+            </button>
+          </div>
+
+          <div class="toggles" aria-label="Visual toggles">
+            <label>
+              <input id="scanlines" type="checkbox" checked />
+              <span>Scanlines</span>
+            </label>
+            <label>
+              <input id="matrixMode" type="checkbox" checked />
+              <span>Rain</span>
+            </label>
+          </div>
+        </aside>
+
+        <section class="panel terminal-panel" aria-label="Fake command terminal">
+          <div class="terminal-tabs" aria-label="Terminal tabs">
+            <button class="tab active" type="button">ops</button>
+            <button class="tab" type="button">trace</button>
+            <button class="tab" type="button">cipher</button>
+          </div>
+          <div class="terminal" id="terminal" tabindex="0" aria-live="polite"></div>
+          <form class="command-line" id="commandForm">
+            <span aria-hidden="true">root@phantom:~$</span>
+            <input
+              id="commandInput"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Type a fake simulator command"
+              placeholder="type launch, scan, decrypt, spoof, trace, lock, or clear"
+            />
+          </form>
+        </section>
+
+        <aside class="panel telemetry-panel" aria-label="Telemetry">
+          <div class="panel-head">
+            <h2>Telemetry</h2>
+            <span id="clock">00:00:00</span>
+          </div>
+          <div class="radar" aria-hidden="true">
+            <div class="radar-sweep"></div>
+            <span class="blip blip-a"></span>
+            <span class="blip blip-b"></span>
+            <span class="blip blip-c"></span>
+          </div>
+          <div class="meters">
+            <label>
+              <span>CPU</span>
+              <meter id="cpuMeter" min="0" max="100" value="24"></meter>
+            </label>
+            <label>
+              <span>Signal</span>
+              <meter id="signalMeter" min="0" max="100" value="62"></meter>
+            </label>
+            <label>
+              <span>Entropy</span>
+              <meter id="entropyMeter" min="0" max="100" value="41"></meter>
+            </label>
+          </div>
+        </aside>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel map-panel" aria-label="Fake network map">
+          <div class="panel-head">
+            <h2>Route Map</h2>
+            <span id="routeLabel">LOCALHOST LOOP</span>
+          </div>
+          <div class="map-grid" id="mapGrid" aria-hidden="true"></div>
+        </article>
+
+        <article class="panel feed-panel" aria-label="Event feed">
+          <div class="panel-head">
+            <h2>Event Feed</h2>
+            <span>synthetic only</span>
+          </div>
+          <ul id="eventFeed"></ul>
+        </article>
+      </section>
+
+      <canvas id="rainCanvas" aria-hidden="true"></canvas>
+      <div class="scanline-layer" aria-hidden="true"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
